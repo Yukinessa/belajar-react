@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import fetchAPI from './fetchAPI'
 
 const { REACT_APP_BASE_URL } = process.env
 const Login = () => {
@@ -11,7 +12,7 @@ const Login = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post(`${REACT_APP_BASE_URL}/auth/login`, { email, password })
+            const response = await fetchAPI('POST', `auth/login`, { email, password })
             console.log(response)
             history.push("/dashboard")
         } catch (error) {
